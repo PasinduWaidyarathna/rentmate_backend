@@ -1,5 +1,6 @@
 package com.example.rentmate_backend.service.impl;
 
+import com.example.rentmate_backend.exceptions.student.StudentException;
 import com.example.rentmate_backend.model.Student;
 import com.example.rentmate_backend.repository.StudentRepository;
 import com.example.rentmate_backend.service.StudentService;
@@ -49,8 +50,7 @@ public class StudentServiceImpl implements StudentService {
             // Update other properties as needed
             return studentRepository.save(upStd);
         } else {
-            return null;
-            //throw new StudentNotFoundException("Student with ID " + id + " not found.");
+            throw new StudentException("Student with ID " + id + " not found.");
         }
     }
 

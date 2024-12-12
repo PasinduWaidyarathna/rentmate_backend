@@ -1,4 +1,12 @@
 package com.example.rentmate_backend.service;
 
-public class ReviewService {
+import com.example.rentmate_backend.model.Review;
+import java.util.List;
+public interface ReviewService {
+    Review createReview(Review review);
+    Review getReviewById(String id);
+    List<Review> getAllReviews();
+    Review updateReview(String id, Review review);
+    void deleteReview(String id);
+
 }

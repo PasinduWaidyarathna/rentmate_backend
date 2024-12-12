@@ -3,18 +3,25 @@ package com.example.rentmate_backend.model;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@Document(collection="students")
-@Data
+@Document(collection = "students")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
     @Id
     private String id;
+
     private String firstName;
     private String lastName;
     private String email;
-    private String  department;
-    private int yearOfEnrollment;
+    private String department;
+    private Integer yearOfEnrollment;
     /*public void setId(String id) {
         this.id = id;
     }*/
@@ -52,5 +59,4 @@ public class Student {
     public void setYearOfEnrollment(int yearOfEnrollment) {
         this.yearOfEnrollment = yearOfEnrollment;
     }
-
 }
