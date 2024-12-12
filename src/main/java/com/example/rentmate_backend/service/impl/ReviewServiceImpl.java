@@ -6,6 +6,7 @@ import com.example.rentmate_backend.repository.ReviewRepository;
 import com.example.rentmate_backend.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review createReview(Review review) {
+        review.setCreatedAt(new Date()); // Manually set createdAt
+        review.setUpdatedAt(new Date()); // Initial updatedAt
         return reviewRepository.save(review);
     }
 
@@ -41,12 +44,17 @@ public class ReviewServiceImpl implements ReviewService {
         if (existingReview.isPresent()) {
             // Map the updated properties from the incoming Review object
             Review upRew= existingReview.get();
+            // Preserve the original createdAt
+            updatedReview.setCreatedAt(upRew.getCreatedAt());
+
+            // Update updatedAt
+            updatedReview.setUpdatedAt(new Date());
+
             upRew.setReviewerId(updatedReview.getReviewerId());
             upRew.setRating(updatedReview.getRating());
             upRew.setComment(updatedReview.getComment());
             upRew.setItemId(updatedReview.getItemId());
-
-            // Update other properties as needed
+            upRew.setUpdatedAt(new Date());
             return reviewRepository.save(upRew);
         } else {
             throw new ReviewException("Review with ID " + id + " not found.");

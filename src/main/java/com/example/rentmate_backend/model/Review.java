@@ -2,12 +2,14 @@ package com.example.rentmate_backend.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import java.util.Date;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 @Document(collection = "reviews")
 @Data
 @NoArgsConstructor
@@ -20,7 +22,13 @@ public class Review {
     private Integer rating;
     private String comment;
     private String itemId;
-    private Timestamp timestamp;
+    @CreatedDate
+    @Field("created_at")
+    private Date createdAt;
+
+    @LastModifiedDate
+    @Field("updated_at")
+    private Date updatedAt;
 
     public String getId() {
         return id;
@@ -60,5 +68,21 @@ public class Review {
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

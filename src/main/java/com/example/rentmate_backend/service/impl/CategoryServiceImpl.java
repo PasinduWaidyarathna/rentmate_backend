@@ -6,6 +6,8 @@ import com.example.rentmate_backend.repository.CategoryRepository;
 import com.example.rentmate_backend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category createCategory(Category category) {
+        category.setCreatedAt(new Date()); // Manually set createdAt
+        category.setUpdatedAt(new Date()); // Initial updatedAt
         return categoryRepository.save(category);
     }
 
@@ -41,12 +45,18 @@ public class CategoryServiceImpl implements CategoryService {
         if (existingCategory.isPresent()) {
             // Map the updated properties from the incoming Category object
             Category upCtd= existingCategory.get();
+            // Preserve the original createdAt
+            updatedCategory.setCreatedAt(upCtd.getCreatedAt());
+
+            // Update updatedAt
+            updatedCategory.setUpdatedAt(new Date());
+            
             upCtd.setName(updatedCategory.getName());
             upCtd.setDescription(updatedCategory.getDescription());
             upCtd.setImageUrl(updatedCategory.getImageUrl());
             upCtd.setItemCount(updatedCategory.getItemCount());
 
-
+            upCtd.setUpdatedAt(new Date());
             // Update other properties as needed
             return categoryRepository.save(upCtd);
         } else {
