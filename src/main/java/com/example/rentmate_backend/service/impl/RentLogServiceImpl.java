@@ -27,7 +27,7 @@ public class RentLogServiceImpl implements RentLogService {
     }
 
     @Override
-    public List<RentLog> getAllCategories() {
+    public List<RentLog> getAllRentLogs() {
         return rentlogRepository.findAll();
     }
 

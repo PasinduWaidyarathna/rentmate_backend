@@ -31,8 +31,94 @@ public class Rent {
     private LocalDateTime itemReturnedDate; // Date the item was returned (optional)
     private Double overDueFee; // Fee for overdue returns (optional)
     private int quantity; // Number of items rented
-    private Timestamp timestamp;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getLenderId() {
+        return lenderId;
+    }
+
+    public void setLenderId(String lenderId) {
+        this.lenderId = lenderId;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public double getItemCost() {
+        return itemCost;
+    }
+
+    public void setItemCost(double itemCost) {
+        this.itemCost = itemCost;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public LocalDateTime getItemReturnedDate() {
+        return itemReturnedDate;
+    }
+
+    public void setItemReturnedDate(LocalDateTime itemReturnedDate) {
+        this.itemReturnedDate = itemReturnedDate;
+    }
+
+    public Double getOverDueFee() {
+        return overDueFee;
+    }
+
+    public void setOverDueFee(Double overDueFee) {
+        this.overDueFee = overDueFee;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
 
 

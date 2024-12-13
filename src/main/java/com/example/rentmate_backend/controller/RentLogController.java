@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/rentlog")
-@Tag(name="RentLogController",description="To perform operations on Categories")
+@Tag(name="RentLogController",description="To perform operations on RentLog")
 public class RentLogController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class RentLogController {
 
     // Create a new RentLog
     @Operation(
-            summary = "POST operation on Categories",
+            summary = "POST operation on RentLog",
             description = "It is used to save RentLog object in database"
     )
     @PostMapping
@@ -32,13 +32,13 @@ public class RentLogController {
 
     // Get all RentLogs
     @Operation(
-            summary = "GET operation on Categories",
-            description = "Endpoint to fetch a list of all Categories from the database"
+            summary = "GET operation on RentLog",
+            description = "Endpoint to fetch a list of all RentLog from the database"
     )
     @GetMapping
-    public ResponseEntity<List<RentLog>> getAllCategories() {
-        List<RentLog> categories = rentlogService.getAllCategories();
-        return new ResponseEntity<>(categories, HttpStatus.OK);
+    public ResponseEntity<List<RentLog>> getAllRentLogs() {
+        List<RentLog> rentLog = rentlogService.getAllRentLogs();
+        return new ResponseEntity<>(rentLog, HttpStatus.OK);
     }
 
     // Get RentLog by ID

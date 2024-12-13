@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-@Document(collection = "rent")
+@Document(collection = "rentlogs")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,7 +26,53 @@ public class RentLog {
     private LocalDateTime createdAt; // Record creation timestamp
     private LocalDateTime updatedAt; // Record update timestamp
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getRentRecordId() {
+        return rentRecordId;
+    }
+
+    public void setRentRecordId(String rentRecordId) {
+        this.rentRecordId = rentRecordId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
 
 
