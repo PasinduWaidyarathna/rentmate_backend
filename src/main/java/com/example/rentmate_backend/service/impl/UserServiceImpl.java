@@ -33,10 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(String id, User updatedUser) {
-        /*if (studentRepository.existsById(id)) {
-            return studentRepository.save(student);
-        }
-        return null; // Return null or throw an exception if not found*/
+
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isPresent()) {
 
