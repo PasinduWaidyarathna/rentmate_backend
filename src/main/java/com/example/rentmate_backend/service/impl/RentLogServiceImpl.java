@@ -33,16 +33,12 @@ public class RentLogServiceImpl implements RentLogService {
 
     @Override
     public RentLog updateRentLog(String id, RentLog updatedRentLog) {
-        /*if (studentRepository.existsById(id)) {
-            return studentRepository.save(student);
-        }
-        return null; // Return null or throw an exception if not found*/
+
         Optional<RentLog> existingRentLog = rentlogRepository.findById(id);
         if (existingRentLog.isPresent()) {
             // Map the updated properties from the incoming RentLog object
             RentLog upCtd= existingRentLog.get();
             upCtd.setItemId(updatedRentLog.getItemId());
-
 
             // Update other properties as needed
             return rentlogRepository.save(upCtd);
