@@ -33,10 +33,7 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public Rent updateRent(String id, Rent updatedRent) {
-        /*if (studentRepository.existsById(id)) {
-            return studentRepository.save(student);
-        }
-        return null; // Return null or throw an exception if not found*/
+
         Optional<Rent> existingRent = rentRepository.findById(id);
         if (existingRent.isPresent()) {
             // Map the updated properties from the incoming Rent object
@@ -45,7 +42,6 @@ public class RentServiceImpl implements RentService {
             upCtd.setEndDate(updatedRent.getEndDate());
             upCtd.setItemReturnedDate(updatedRent.getItemReturnedDate());
             upCtd.setOverDueFee(updatedRent.getOverDueFee());
-
 
             // Update other properties as needed
             return rentRepository.save(upCtd);
