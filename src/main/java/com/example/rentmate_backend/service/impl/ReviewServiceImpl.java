@@ -36,10 +36,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review updateReview(String id, Review updatedReview) {
-        /*if (studentRepository.existsById(id)) {
-            return studentRepository.save(student);
-        }
-        return null; // Return null or throw an exception if not found*/
+
         Optional<Review> existingReview = reviewRepository.findById(id);
         if (existingReview.isPresent()) {
             // Map the updated properties from the incoming Review object
