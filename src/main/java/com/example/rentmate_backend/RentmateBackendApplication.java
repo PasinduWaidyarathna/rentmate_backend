@@ -9,13 +9,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @OpenAPIDefinition(
 		info = @Info(
-				title="Student OPEN API",
+				title="RentMate OPEN API",
 				version = "1.0.0",
-				description="Student OPEN API documentation"
+				description="RentMate OPEN API documentation"
 		),
 		servers = @Server(
 				url ="http://localhost:8080/api/v1",
-				description="Student OPEN API url"
+				description="RentMate OPEN API url"
 		)
 )
 public class RentmateBackendApplication {
