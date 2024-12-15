@@ -1,8 +1,11 @@
 package com.example.rentmate_backend.exceptions;
 
 import com.example.rentmate_backend.exceptions.category.CategoryException;
+import com.example.rentmate_backend.exceptions.item.ItemException;
+import com.example.rentmate_backend.exceptions.rent.RentException;
+import com.example.rentmate_backend.exceptions.rentlog.RentLogException;
 import com.example.rentmate_backend.exceptions.review.ReviewException;
-import com.example.rentmate_backend.exceptions.student.StudentException;
+import com.example.rentmate_backend.exceptions.user.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,8 +26,23 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(StudentException.class)
-    public ResponseEntity<ErrorResponse> handleStudentException(StudentException ex) {
+    @ExceptionHandler(RentException.class)
+    public ResponseEntity<ErrorResponse> handleStudentException(RentException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(RentLogException.class)
+    public ResponseEntity<ErrorResponse> handleStudentException(RentLogException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(ItemException.class)
+    public ResponseEntity<ErrorResponse> handleStudentException(ItemException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<ErrorResponse> handleStudentException(UserException ex) {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
