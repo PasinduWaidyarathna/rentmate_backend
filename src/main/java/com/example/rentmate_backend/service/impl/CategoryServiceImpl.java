@@ -37,10 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category updateCategory(String id, Category updatedCategory) {
-        /*if (studentRepository.existsById(id)) {
-            return studentRepository.save(student);
-        }
-        return null; // Return null or throw an exception if not found*/
+
         Optional<Category> existingCategory = categoryRepository.findById(id);
         if (existingCategory.isPresent()) {
             // Map the updated properties from the incoming Category object
