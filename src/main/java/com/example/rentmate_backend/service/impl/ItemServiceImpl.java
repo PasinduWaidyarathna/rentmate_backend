@@ -35,10 +35,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item updateItem(String id, Item updatedItem) {
-        /*if (studentRepository.existsById(id)) {
-            return studentRepository.save(student);
-        }
-        return null; // Return null or throw an exception if not found*/
+
         Optional<Item> existingItem = itemRepository.findById(id);
         if (existingItem.isPresent()) {
             // Map the updated properties from the incoming Item object
