@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/rentlog")
+@CrossOrigin(origins = "*")
 @Tag(name="RentLogController",description="To perform operations on RentLog")
 public class RentLogController {
 
