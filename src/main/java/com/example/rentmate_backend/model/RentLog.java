@@ -1,6 +1,8 @@
 package com.example.rentmate_backend.model;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -9,6 +11,7 @@ import java.util.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "rentlogs")
 @Data
@@ -23,8 +26,21 @@ public class RentLog {
     //private PaymentStatus paymentStatus; // Current payment status
     //private RentStatus rentStatus; // Current rental status
     private int quantity; // Number of items rented
-    private LocalDateTime createdAt; // Record creation timestamp
-    private LocalDateTime updatedAt; // Record update timestamp
+    @CreatedDate
+    @Field("created_at")
+    private Date createdAt;
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @LastModifiedDate
+    @Field("updated_at")
+    private Date updatedAt;
 
     public String getId() {
         return id;
@@ -58,21 +74,6 @@ public class RentLog {
         this.quantity = quantity;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }
 
 

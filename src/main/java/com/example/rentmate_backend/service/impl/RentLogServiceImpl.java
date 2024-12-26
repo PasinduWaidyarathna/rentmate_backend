@@ -6,6 +6,8 @@ import com.example.rentmate_backend.repository.RentLogRepository;
 import com.example.rentmate_backend.service.RentLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,8 @@ public class RentLogServiceImpl implements RentLogService {
 
     @Override
     public RentLog createRentLog(RentLog rentlog) {
+        rentlog.setCreatedAt(new Date()); // Manually set createdAt
+        rentlog.setUpdatedAt(new Date()); // Initial updatedAt
         return rentlogRepository.save(rentlog);
     }
 
@@ -38,8 +42,13 @@ public class RentLogServiceImpl implements RentLogService {
         if (existingRentLog.isPresent()) {
             // Map the updated properties from the incoming RentLog object
             RentLog upCtd= existingRentLog.get();
-            upCtd.setItemId(updatedRentLog.getItemId());
+            // Preserve the original createdAt
+            updatedRentLog.setCreatedAt(upCtd.getCreatedAt());
 
+            // Update updatedAt
+            updatedRentLog.setUpdatedAt(new Date());
+            upCtd.setItemId(updatedRentLog.getItemId());
+            upCtd.setUpdatedAt(new Date());
             // Update other properties as needed
             return rentlogRepository.save(upCtd);
         } else {
