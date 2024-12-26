@@ -1,6 +1,8 @@
 package com.example.rentmate_backend.model;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "users")
 @Data
@@ -27,7 +30,29 @@ public class User {
     private String zipCode;
     private Boolean isVerified;
     private String nic;
+    @CreatedDate
+    @Field("created_at")
+    private Date createdAt;
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @LastModifiedDate
+    @Field("updated_at")
+    private Date updatedAt;
     public String getId() {
         return id;
     }

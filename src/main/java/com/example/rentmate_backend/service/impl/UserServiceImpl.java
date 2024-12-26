@@ -7,6 +7,7 @@ import com.example.rentmate_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
+        user.setCreatedAt(new Date()); // Manually set createdAt
+        user.setUpdatedAt(new Date()); // Initial updatedAt
         return userRepository.save(user);
     }
 
@@ -38,6 +41,11 @@ public class UserServiceImpl implements UserService {
         if (existingUser.isPresent()) {
 
             User updateUser = existingUser.get();
+            // Preserve the original createdAt
+            updatedUser.setCreatedAt(updateUser.getCreatedAt());
+
+            // Update updatedAt
+            updatedUser.setUpdatedAt(new Date());
             updateUser.setFirstName(updatedUser.getFirstName());
             updateUser.setLastName(updatedUser.getLastName());
             updateUser.setRole(updatedUser.getRole());
@@ -47,7 +55,7 @@ public class UserServiceImpl implements UserService {
             updateUser.setZipCode(updatedUser.getZipCode());
             updateUser.setVerified(updatedUser.getVerified());
             updateUser.setNic(updatedUser.getNic());
-
+            updateUser.setUpdatedAt(new Date());
             // Update other properties as needed
             return userRepository.save(updateUser);
         } else {
