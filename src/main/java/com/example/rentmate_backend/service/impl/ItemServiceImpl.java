@@ -1,7 +1,9 @@
 package com.example.rentmate_backend.service.impl;
 
 import com.example.rentmate_backend.exceptions.item.ItemException;
+import com.example.rentmate_backend.exceptions.review.ReviewException;
 import com.example.rentmate_backend.model.Item;
+import com.example.rentmate_backend.model.Review;
 import com.example.rentmate_backend.repository.ItemRepository;
 import com.example.rentmate_backend.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item createItem(Item item) {
+        item.setCreatedAt(new Date()); // Manually set createdAt
+        item.setUpdatedAt(new Date()); // Initial updatedAt
         return itemRepository.save(item);
     }
 
@@ -40,6 +45,11 @@ public class ItemServiceImpl implements ItemService {
         if (existingItem.isPresent()) {
             // Map the updated properties from the incoming Item object
             Item updateItem = existingItem.get();
+            // Preserve the original createdAt
+            updatedItem.setCreatedAt(updateItem.getCreatedAt());
+
+            // Update updatedAt
+            updatedItem.setUpdatedAt(new Date());
             updateItem.setName(updatedItem.getName());
             updateItem.setDescription(updatedItem.getDescription());
             updateItem.setCategoryId(updatedItem.getCategoryId());
@@ -57,7 +67,7 @@ public class ItemServiceImpl implements ItemService {
 
             // Deep copy delivery options
             updateItem.setDeliveryOptions(new ArrayList<>(updatedItem.getDeliveryOptions()));
-
+            updateItem.setUpdatedAt(new Date());
             // Update other properties as needed
             return itemRepository.save(updateItem);
         } else {
