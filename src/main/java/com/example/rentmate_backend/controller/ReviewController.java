@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/review")
+@CrossOrigin(origins = "*")
 @Tag(name="ReviewController",description="To perform operations on Reviews")
 public class ReviewController {
 
