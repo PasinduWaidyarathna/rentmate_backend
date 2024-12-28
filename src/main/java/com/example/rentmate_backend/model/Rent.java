@@ -34,6 +34,16 @@ public class Rent {
     private LocalDateTime itemReturnedDate; // Date the item was returned (optional)
     private Double overDueFee; // Fee for overdue returns (optional)
     private int quantity; // Number of items rented
+    private BillingDetails billingDetails;
+
+    public BillingDetails getBillingDetails() {
+        return billingDetails;
+    }
+
+    public void setBillingDetails(BillingDetails billingDetails) {
+        this.billingDetails = billingDetails;
+    }
+
     @CreatedDate
     @Field("created_at")
     private Date createdAt;
