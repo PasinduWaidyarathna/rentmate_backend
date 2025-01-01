@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>rentmate_backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<version>1.0</version>
+	<packaging>jar</packaging>
 	<name>rentmate_backend</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -59,6 +59,22 @@
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-compress</artifactId>
+			<version>1.22</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock-jre8-standalone</artifactId>
+			<version>2.35.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>9.1</version>
 		</dependency>
 	</dependencies>
 
