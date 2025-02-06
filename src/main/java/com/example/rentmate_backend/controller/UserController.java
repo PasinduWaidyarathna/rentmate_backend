@@ -56,6 +56,16 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    // Get Users by Role
+    @Operation(
+            summary = "GET - Find User by Role",
+            description = "Endpoint to retrieve a specific User using their role"
+    )
+    @GetMapping("/role/{role}")
+    public List<User> getUsersByRole(@PathVariable String role) {
+        return userService.getUsersByRole(role);
+    }
+
     // Update User
     @Operation(
             summary = "PUT operation on User",

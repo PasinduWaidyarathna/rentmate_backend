@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getUsersByRole(String role) {
+        return userRepository.findByRole(role);
+    }
+
+    @Override
     public User updateUser(String id, User updatedUser) {
 
         Optional<User> existingUser = userRepository.findById(id);
