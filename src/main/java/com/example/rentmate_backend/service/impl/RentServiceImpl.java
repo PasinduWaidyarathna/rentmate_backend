@@ -48,6 +48,9 @@ public class RentServiceImpl implements RentService {
             // Update updatedAt
             updatedRent.setUpdatedAt(new Date());
             upCtd.setStartDate(updatedRent.getStartDate());
+            upCtd.setRentStatus(updatedRent.getRentStatus());
+            upCtd.setPaymentStatus(updatedRent.getPaymentStatus());
+            upCtd.setDeliveryOption(updatedRent.getDeliveryOption());
             upCtd.setEndDate(updatedRent.getEndDate());
             upCtd.setBillingDetails(updatedRent.getBillingDetails());
             upCtd.setItemReturnedDate(updatedRent.getItemReturnedDate());
