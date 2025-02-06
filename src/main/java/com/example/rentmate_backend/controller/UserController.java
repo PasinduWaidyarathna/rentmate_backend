@@ -44,8 +44,8 @@ public class UserController {
 
     // Get User by ID
     @Operation(
-            summary = "GET - Find User by ID",
-            description = "Endpoint to retrieve a specific User using their unique identifier"
+            summary = "GET - Find Users by ID",
+            description = "Endpoint to retrieve a specific Users using their unique identifier"
     )
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable String id) {

@@ -35,6 +35,20 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public List<Review> getReviewsByItemId(String itemId) {
+        return reviewRepository.findByItemId(itemId);
+    }
+
+    @Override
+    public Double getAverageRatingByItemId(String itemId) {
+        List<Review> reviews = reviewRepository.findRatingsByItemId(itemId);
+        if (reviews == null || reviews.isEmpty()) {
+            return 0.0;
+        }
+        return reviews.stream().mapToInt(Review::getRating).average().orElse(0.0);
+    }
+
+    @Override
     public Review updateReview(String id, Review updatedReview) {
 
         Optional<Review> existingReview = reviewRepository.findById(id);

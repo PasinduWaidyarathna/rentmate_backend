@@ -56,6 +56,26 @@ public class ReviewController {
         return new ResponseEntity<>(review, HttpStatus.OK);
     }
 
+    // Get Reviews by Item ID
+    @Operation(
+            summary = "GET - Find Reviews by Item ID",
+            description = "Endpoint to retrieve a specific Reviews using their Item ID"
+    )
+    @GetMapping("/item/{itemId}")
+    public List<Review> getReviewsByItemId(@PathVariable String itemId) {
+        return reviewService.getReviewsByItemId(itemId);
+    }
+
+    // Get Average Rating by Item ID
+    @Operation(
+            summary = "GET - Find Average Rating by Item ID",
+            description = "Endpoint to retrieve a specific Reviews using their Item ID"
+    )
+    @GetMapping("/average-rating/{itemId}")
+    public Double getAverageRatingByItemId(@PathVariable String itemId) {
+        return reviewService.getAverageRatingByItemId(itemId);
+    }
+
     // Update Review
     @Operation(
             summary = "PUT operation on Review",
