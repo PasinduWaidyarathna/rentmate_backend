@@ -36,6 +36,16 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public Category getCategoryByName(String name) {
+        return categoryRepository.findByName(name);
+    }
+
+    @Override
+    public void deleteCategoryByName(String name) {
+        categoryRepository.deleteByName(name);
+    }
+
+    @Override
     public Category updateCategory(String id, Category updatedCategory) {
 
         Optional<Category> existingCategory = categoryRepository.findById(id);

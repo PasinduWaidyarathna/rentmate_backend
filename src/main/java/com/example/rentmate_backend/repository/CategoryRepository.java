@@ -9,4 +9,8 @@ import com.example.rentmate_backend.model.Category;
 
 public interface CategoryRepository extends MongoRepository<Category, String> {
 
+    Category findByName(String name);
+
+    void deleteByName(String name);
+
 }
