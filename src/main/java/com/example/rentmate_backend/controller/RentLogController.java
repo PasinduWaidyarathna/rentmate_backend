@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class RentLogController {
             description = "It is used to save RentLog object in database"
     )
     @PostMapping
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<RentLog> createRentLog(@RequestBody RentLog rentlog) {
         RentLog createdRentLog = rentlogService.createRentLog(rentlog);
         return new ResponseEntity<>(createdRentLog, HttpStatus.CREATED);
@@ -37,6 +39,7 @@ public class RentLogController {
             description = "Endpoint to fetch a list of all RentLog from the database"
     )
     @GetMapping
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<List<RentLog>> getAllRentLogs() {
         List<RentLog> rentLog = rentlogService.getAllRentLogs();
         return new ResponseEntity<>(rentLog, HttpStatus.OK);
@@ -48,6 +51,7 @@ public class RentLogController {
             description = "Endpoint to retrieve a specific RentLog using their unique identifier"
     )
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<RentLog> getRentLogById(@PathVariable String id) {
         RentLog rentlog = rentlogService.getRentLogById(id);
         if (rentlog == null) {
@@ -62,6 +66,7 @@ public class RentLogController {
             description = "Endpoint to update an existing rentlog's details using their ID"
     )
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<RentLog> updateRentLog(@PathVariable String id, @RequestBody RentLog rentlog) {
         RentLog updatedRentLog = rentlogService.updateRentLog(id, rentlog);
         if (updatedRentLog == null) {
@@ -76,6 +81,7 @@ public class RentLogController {
             description = "Endpoint to remove a specific RentLog from the database using their unique identifier"
     )
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Void> deleteRentLog(@PathVariable String id) {
         rentlogService.deleteRentLog(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
