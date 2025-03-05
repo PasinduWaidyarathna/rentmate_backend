@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class ItemController {
             description = "It is used to save Item object in database"
     )
     @PostMapping
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
         Item createdItem = itemService.createItem(item);
         return new ResponseEntity<>(createdItem, HttpStatus.CREATED);
@@ -37,6 +39,7 @@ public class ItemController {
             description = "Endpoint to fetch a list of all Items from the database"
     )
     @GetMapping
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<List<Item>> getAllItems() {
         List<Item> items = itemService.getAllItems();
         return new ResponseEntity<>(items, HttpStatus.OK);
@@ -48,6 +51,7 @@ public class ItemController {
             description = "Endpoint to retrieve a specific Item using their unique identifier"
     )
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Item> getItemById(@PathVariable String id) {
         Item item = itemService.getItemById(id);
         if (item == null) {
@@ -62,6 +66,7 @@ public class ItemController {
             description = "Endpoint to update an existing Item's details using their ID"
     )
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Item> updateItem(@PathVariable String id, @RequestBody Item item) {
         Item updatedItem = itemService.updateItem(id, item);
         if (updatedItem == null) {
@@ -76,6 +81,7 @@ public class ItemController {
             description = "Endpoint to remove a specific Item from the database using their unique identifier"
     )
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Void> deleteItem(@PathVariable String id) {
         itemService.deleteItem(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
