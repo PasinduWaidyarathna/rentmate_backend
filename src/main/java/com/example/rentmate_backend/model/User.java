@@ -19,7 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class User {
     @Id
     private String id;
-
+    private String sid;
     private String firstName;
     private String lastName;
     private String role;
@@ -33,6 +33,10 @@ public class User {
     @CreatedDate
     @Field("created_at")
     private Date createdAt;
+
+    public String getSid() { return sid; }
+
+    public void setSid(String sid) { this.sid = sid; }
 
     public Date getCreatedAt() {
         return createdAt;

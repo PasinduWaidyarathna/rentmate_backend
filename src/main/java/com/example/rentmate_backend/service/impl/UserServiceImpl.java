@@ -72,4 +72,15 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(String id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public User getUserBySid(String sid) {
+        return userRepository.findBySid(sid);
+    }
+
+    @Override
+    public String getUserIdBySid(String sid) {
+        User user = userRepository.findBySid(sid);
+        return (user != null) ? user.getId() : null;
+    }
 }

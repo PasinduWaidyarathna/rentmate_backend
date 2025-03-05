@@ -1,5 +1,6 @@
 package com.example.rentmate_backend.controller;
 
+import com.example.rentmate_backend.model.Category;
 import com.example.rentmate_backend.model.User;
 import com.example.rentmate_backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -89,5 +90,27 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable String id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    // Endpoint to get the complete User object by sid
+    @GetMapping("/bySid/{sid}")
+    public ResponseEntity<User> getUserBySid(@PathVariable String sid) {
+        User user = userService.getUserBySid(sid);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Endpoint to get only the user id by sid
+    @GetMapping("/userId/{sid}")
+    public ResponseEntity<String> getUserIdBySid(@PathVariable String sid) {
+        String userId = userService.getUserIdBySid(sid);
+        if (userId != null) {
+            return ResponseEntity.ok(userId);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
