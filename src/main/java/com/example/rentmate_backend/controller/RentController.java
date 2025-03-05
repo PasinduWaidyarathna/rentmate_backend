@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class RentController {
             description = "It is used to save Rent object in database"
     )
     @PostMapping
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Rent> createRent(@RequestBody Rent rent) {
         Rent createdRent = rentService.createRent(rent);
         return new ResponseEntity<>(createdRent, HttpStatus.CREATED);
@@ -37,6 +39,7 @@ public class RentController {
             description = "Endpoint to fetch a list of all Rents from the database"
     )
     @GetMapping
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<List<Rent>> getAllRents() {
         List<Rent> categories = rentService.getAllRents();
         return new ResponseEntity<>(categories, HttpStatus.OK);
@@ -48,6 +51,7 @@ public class RentController {
             description = "Endpoint to retrieve a specific Rent using their unique identifier"
     )
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Rent> getRentById(@PathVariable String id) {
         Rent rent = rentService.getRentById(id);
         if (rent == null) {
@@ -62,6 +66,7 @@ public class RentController {
             description = "Endpoint to update an existing rent's details using their ID"
     )
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Rent> updateRent(@PathVariable String id, @RequestBody Rent rent) {
         Rent updatedRent = rentService.updateRent(id, rent);
         if (updatedRent == null) {
@@ -76,6 +81,7 @@ public class RentController {
             description = "Endpoint to remove a specific Rent from the database using their unique identifier"
     )
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Void> deleteRent(@PathVariable String id) {
         rentService.deleteRent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
