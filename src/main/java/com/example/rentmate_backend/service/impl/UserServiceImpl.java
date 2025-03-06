@@ -83,4 +83,8 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findBySid(sid);
         return (user != null) ? user.getId() : null;
     }
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }

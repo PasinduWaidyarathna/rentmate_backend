@@ -13,4 +13,5 @@ public interface UserService {
     List<User> getUsersByRole(String role);
     User getUserBySid(String sid);
     String getUserIdBySid(String sid);
+    User getUserByEmail(String email);
 }

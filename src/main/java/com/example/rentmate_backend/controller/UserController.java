@@ -1,6 +1,5 @@
 package com.example.rentmate_backend.controller;
 
-import com.example.rentmate_backend.model.Category;
 import com.example.rentmate_backend.model.User;
 import com.example.rentmate_backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -93,7 +92,7 @@ public class UserController {
     }
 
     // Endpoint to get the complete User object by sid
-    @GetMapping("/bySid/{sid}")
+    @GetMapping("/{sid}")
     public ResponseEntity<User> getUserBySid(@PathVariable String sid) {
         User user = userService.getUserBySid(sid);
         if (user != null) {
@@ -113,4 +112,13 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+        User user = userService.getUserByEmail(email);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
