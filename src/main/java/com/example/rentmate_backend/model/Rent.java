@@ -26,11 +26,11 @@ public class Rent {
     private String itemId; // ID of the rented item
     private LocalDateTime startDate; // Rental start date
     private LocalDateTime endDate; // Rental end date
-    //private DeliveryOptions deliveryOption;
+    private DeliveryOptions deliveryOption;
     private double itemCost; // Cost per item
     private double totalCost; // Total cost of the rental (including fees, etc.)
-    //private PaymentStatus paymentStatus; // Current payment status
-    //private RentStatus rentStatus; // Current rental status
+    private PaymentStatus paymentStatus; // Current payment status
+    private RentStatus rentStatus; // Current rental status
     private LocalDateTime itemReturnedDate; // Date the item was returned (optional)
     private Double overDueFee; // Fee for overdue returns (optional)
     private int quantity; // Number of items rented
@@ -154,6 +154,29 @@ public class Rent {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+    public RentStatus getRentStatus() {
+        return rentStatus;
+    }
+
+    public void setRentStatus(RentStatus rentStatus) {
+        this.rentStatus = rentStatus;
+    }
+
+    public DeliveryOptions getDeliveryOption() {
+        return deliveryOption;
+    }
+
+    public void setDeliveryOption(DeliveryOptions deliveryOption) {
+        this.deliveryOption = deliveryOption;
     }
 }
 

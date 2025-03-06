@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getUsersByRole(String role) {
+        return userRepository.findByRole(role);
+    }
+
+    @Override
     public User updateUser(String id, User updatedUser) {
 
         Optional<User> existingUser = userRepository.findById(id);
@@ -66,5 +71,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public User getUserBySid(String sid) {
+        return userRepository.findBySid(sid);
+    }
+
+    @Override
+    public String getUserIdBySid(String sid) {
+        User user = userRepository.findBySid(sid);
+        return (user != null) ? user.getId() : null;
+    }
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

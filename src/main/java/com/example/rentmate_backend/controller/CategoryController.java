@@ -56,6 +56,16 @@ public class CategoryController {
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
+    // Get Category by Name
+    @Operation(
+            summary = "GET - Find Category by name",
+            description = "Endpoint to retrieve a specific Category using their name"
+    )
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Category> getCategoryByName(@PathVariable String name) {
+        return ResponseEntity.ok(categoryService.getCategoryByName(name));
+    }
+
     // Update Category
     @Operation(
             summary = "PUT operation on Category",
@@ -81,5 +91,15 @@ public class CategoryController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    // Delete Category by Name
+    @Operation(
+            summary = "DELETE operation on Category by Name",
+            description = "Endpoint to remove a specific Category from the database using their name"
+    )
+    @DeleteMapping("/delete/{name}")
+    public ResponseEntity<String> deleteCategoryByName(@PathVariable String name) {
+        categoryService.deleteCategoryByName(name);
+        return ResponseEntity.ok("Category '" + name + "' deleted successfully.");
+    }
 
 }

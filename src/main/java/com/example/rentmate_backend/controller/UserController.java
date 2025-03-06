@@ -44,8 +44,8 @@ public class UserController {
 
     // Get User by ID
     @Operation(
-            summary = "GET - Find User by ID",
-            description = "Endpoint to retrieve a specific User using their unique identifier"
+            summary = "GET - Find Users by ID",
+            description = "Endpoint to retrieve a specific Users using their unique identifier"
     )
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable String id) {
@@ -54,6 +54,16 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    // Get Users by Role
+    @Operation(
+            summary = "GET - Find User by Role",
+            description = "Endpoint to retrieve a specific User using their role"
+    )
+    @GetMapping("/role/{role}")
+    public List<User> getUsersByRole(@PathVariable String role) {
+        return userService.getUsersByRole(role);
     }
 
     // Update User
@@ -80,4 +90,35 @@ public class UserController {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    // Endpoint to get the complete User object by sid
+    @GetMapping("/{sid}")
+    public ResponseEntity<User> getUserBySid(@PathVariable String sid) {
+        User user = userService.getUserBySid(sid);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Endpoint to get only the user id by sid
+    @GetMapping("/userId/{sid}")
+    public ResponseEntity<String> getUserIdBySid(@PathVariable String sid) {
+        String userId = userService.getUserIdBySid(sid);
+        if (userId != null) {
+            return ResponseEntity.ok(userId);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+        User user = userService.getUserByEmail(email);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }

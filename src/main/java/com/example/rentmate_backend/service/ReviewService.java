@@ -8,5 +8,7 @@ public interface ReviewService {
     List<Review> getAllReviews();
     Review updateReview(String id, Review review);
     void deleteReview(String id);
+    List<Review> getReviewsByItemId(String itemId);
+    Double getAverageRatingByItemId(String itemId);
 
 }
